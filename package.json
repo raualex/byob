@@ -4,6 +4,7 @@
   "description": "",
   "main": "knexfile.js",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "knex": "^0.15.2",
     "pg": "^7.7.1"
   },
