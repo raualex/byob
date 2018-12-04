@@ -2,6 +2,16 @@
   "name": "byob",
   "version": "1.0.0",
   "description": "",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "knex": "^0.15.2",
+    "pg": "^7.7.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0"
+  },
   "main": "server.js",
   "scripts": {
     "test": "mocha",
@@ -17,15 +27,5 @@
   "bugs": {
     "url": "https://github.com/raualex/byob/issues"
   },
-  "homepage": "https://github.com/raualex/byob#readme",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "knex": "^0.15.2",
-    "pg": "^7.7.1"
-  },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.2.0",
-    "mocha": "^5.2.0"
-  }
+  "homepage": "https://github.com/raualex/byob#readme"
 }
