@@ -7,7 +7,7 @@ chai.use(chaiHttp)
 
 
 describe('Server file', () => {
-    it('should get our data', (done) => {
+    it.skip('should get our data', (done) => {
        console.log(clubArray()) 
     })
 })
