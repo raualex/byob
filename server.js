@@ -94,10 +94,21 @@ app.get('/api/v1/cities', (request, response) => {
         .catch(error => response.status(500).json(`Error fetching cities clubs: ${error.message}`))
   })
 
-  
+  app.delete('/api/v1/cities/:id', (request, response) => {
+    const { id } = request.params
+
+    database('comedy_clubs').where('city_id', id).del()
+        .then(() => database('cities').where('id', id).del())
+        .then(city => {
+            response.status(202).json(id)
+        })
+        .catch(error => {
+            response.status(500).json({error: error.message})
+        })
+  })
   
   app.delete('/api/v1/cities/:city_id/comedy_clubs/:club_id', (request, response) => {
-    const { id, club_id } = request.params
+    const { club_id } = request.params
     
     database('comedy_clubs').where('id', club_id).del()
     .then(club => {
