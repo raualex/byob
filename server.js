@@ -85,6 +85,16 @@ app.get('/api/v1/cities', (request, response) => {
             response.status(500).json({error: error.message})
         })
   })
+
+  app.get('/api/v1/cities/:city_id/comedy_clubs', (request, response) => {
+    const { city_id } = request.params
+    
+    database('comedy_clubs').where('city_id', city_id).select()
+        .then(clubs => response.status(200).json(clubs))
+        .catch(error => response.status(500).json(`Error fetching cities clubs: ${error.message}`))
+  })
+
+  
   
   app.delete('/api/v1/cities/:city_id/comedy_clubs/:club_id', (request, response) => {
     const { id, club_id } = request.params
