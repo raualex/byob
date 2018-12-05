@@ -23,12 +23,18 @@ app.get('/api/v1/cities', (request, response) => {
   app.post('/api/v1/cities', (request, response) => {
     const city = request.body
   
+    let missingProp = []
+
     for(let requiredParam of ['city', 'state', 'primary_airport', 'population', 'tourism_website']) {
-        if(!city[requiredParam]) {
-            response.status(422).json({error: error.message})
-        }
+      if(!city[requiredParam]) {
+        missingProp = [...missingProp, requiredParam]
+      }
     }
   
+    if (missingProp.length) {
+      response.status(422).json({error: error.message})
+    }
+
     database('cities').insert(city, 'id')
         .then(cityIds => {
             response.status(201).json({id: cityIds[0]})
@@ -59,10 +65,16 @@ app.get('/api/v1/cities', (request, response) => {
   app.post('/api/v1/cities/:city_id/comedy_clubs', (request, response) => {
     const club = request.body
   
+    let missingProp = []
+
     for(let requiredParam of ['name', 'street_address', 'zip_code', 'rating']) {
-        if(!club[requiredParam]) {
-            response.status(422).json({error: error.message})
+        if(club[requiredParam] === undefined) {
+          missingProp = [...missingProp, requiredParam]
         }
+    }
+    
+    if (missingProp.length) {
+      response.status(422).json({error: error.message})
     }
   
     database('comedy_clubs').insert(club, 'id')  
@@ -79,7 +91,7 @@ app.get('/api/v1/cities', (request, response) => {
     
     database('comedy_clubs').where('id', club_id).del()
     .then(club => {
-      response.status(201).json(id)
+      response.status(202).json(club_id)
     })
     .catch(error => {
       response.status(500).json({error: error.message})
@@ -89,3 +101,5 @@ app.get('/api/v1/cities', (request, response) => {
 app.listen(app.get('port'), () => {
     console.log(`${app.locals.title} is running on ${app.get('port')}.`);
 });
+
+module.exports = app
