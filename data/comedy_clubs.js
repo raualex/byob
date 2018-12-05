@@ -1,4 +1,5 @@
-const comedyClubs = { 'Denver': [
+const comedyClubs = { 
+'Denver': [
 {state: "CO", city: 'Denver', name: "Gate B22", street_address: "Concourse B", zip_code: "80249", rating: 0 },
 {state: "CO", city: 'Denver', name: "Bovine Metropolis Theater & School of Improv", street_address: "1527 Champa St", zip_code: "80202", rating: 0 },
 {state: "CO", city: 'Denver', name: "Comedy Works Downtown in Larimer Square", street_address: "1226 15th St", zip_code: "80202", rating: 0 },
@@ -9,11 +10,10 @@ const comedyClubs = { 'Denver': [
 {state: "CO", city: 'Denver', name: "Voodoo Comedy Playhouse - Bar • Comedy • Lounge", street_address: "1260 22nd St", zip_code: "80205", rating: 0 },
 {state: "CO", city: 'Denver', name: "Marcelo's Iron Throne", street_address: "602 Pearl", zip_code: "80203", rating: 0 },
 {state: "CO", city: 'Denver', name: "Denver Improv", street_address: "8246 Northfield Blvd #1400", zip_code: "80238", rating: 0 },
-{state: "CO", city: 'Denver', name: "Adams Mystery Playhouse", street_address: "2401 N Federal", zip_code: "303-455-1848", rating: 0 },
+{state: "CO", city: 'Denver', name: "Adams Mystery Playhouse", street_address: "2401 N Federal", zip_code: "80238", rating: 0 },
 {state: "CO", city: 'Denver', name: "Wit's End Comedy Club", street_address: "6080 W 92nd Ave", zip_code: "80031", rating: 0 },
 {state: "CO", city: 'Denver', name: "McD's Party Bus", street_address: "Peña Blvd", zip_code: "80022", rating: 0 },
-{state: "CO", city: 'Denver', name: "Buntport Theater", street_address: "717 Lipan St", zip_code: "80204", rating: 0 },
-{state: "CO", city: 'Denver', name: "Sloppy Swish @ Aspen Building Skyridge", street_address: undefined, zip_code: "80124", rating: 0 }
+{state: "CO", city: 'Denver', name: "Buntport Theater", street_address: "717 Lipan St", zip_code: "80204", rating: 0 }
 ],
 'New York City' : [
 {state: "NY", city: 'New York City', name: "Gotham Comedy Club", street_address: "208 W 23rd St", zip_code: "10011", rating: 0 },
@@ -260,7 +260,6 @@ const comedyClubs = { 'Denver': [
   {state: "NV", city: 'Las Vegas', name: "The Anthony Cools Experience", street_address: "3655 Las Vegas Blvd S", zip_code: "89109", rating: 0 },
   {state: "NV", city: 'Las Vegas', name: "Forever Grand Wedding Chapel", street_address: "MGM Grand", zip_code: "89109", rating: 0 },
   {state: "NV", city: 'Las Vegas', name: "L.A. Comedy Club's Dragon Room", street_address: "2000 Las Vegas Blvd S", zip_code: "89104", rating: 0 },
-  {state: "NV", city: 'Las Vegas', name: "Brad Garrett's Comedy Club (MGM Grand)", street_address: "3799 Las Vegas Blvd S", zip_code: undefined, rating: 0 },
   {state: "NV", city: 'Las Vegas', name: "The Mac King Comedy Magic Show", street_address: "Harrah's Hotel & Casino", zip_code: "89109", rating: 0 },
   {state: "NV", city: 'Las Vegas', name: "Big Al's Comedy Club", street_address: "4500 W Tropicana Ave", zip_code: "89103", rating: 0 }
 ],
@@ -465,3 +464,5 @@ const comedyClubs = { 'Denver': [
   {state: "WI", city: 'Milwaukee', name: "Jim's", street_address: "2008 Norton Ave", zip_code: "53188", rating: 0 }
 ]
 }
+
+module.exports = comedyClubs;

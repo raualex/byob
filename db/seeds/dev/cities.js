@@ -1,4 +1,5 @@
 const cities = require('../../../data/citiesdata.js')
+const club = require('../../../data/comedy_clubs.js')
 
 const createCities = (knex, city) => {
   return knex('cities').insert({
@@ -10,13 +11,13 @@ const createCities = (knex, city) => {
   }, 'id')
   .then(cityIds => {
     let clubPromises = club[city.city].map(clubs => {
-      return {
+      return newClubs(knex, {
         name: clubs.name,
         street_address: clubs.street_address,
         zip_code: clubs.zip_code,
         rating: clubs.rating,
         city_id: cityIds[0]
-      }
+      })
     })
     return Promise.all(clubPromises)
   })
