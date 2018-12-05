@@ -11,7 +11,7 @@ app.locals.title = 'BYOB';
 app.use(express.static('public'));
 
 app.get('/api/v1/cities', (request, response) => {
-    database('palette_cities').select()
+    database('cities').select()
         .then(cities => {
             response.status(200).json(cities)
         })
