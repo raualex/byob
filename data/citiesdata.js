@@ -210,3 +210,5 @@ const cities = [
       tourism_website: 'https://www.visitmilwaukee.org'
     }
 ]
+
+module.exports = cities;
