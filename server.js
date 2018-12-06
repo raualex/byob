@@ -77,6 +77,40 @@ app.get('/api/v1/cities', (request, response) => {
            response.status(500).json({ error: error.message })
        })
   })
+
+  app.get('/api/v1/comedy_clubs/:club_id', (request, response) => {
+    const { club_id } = request.params
+    
+    database('comedy_clubs').where('id', club_id).select()
+        .then(club => response.status(200).json(club))
+        .catch(error => response.status(500).json(`Error fetching city: ${error.message}`))
+  })
+
+  app.patch('/api/v1/comedy_clubs/:club_id', (request, response) => {
+      const { club_id } = request.params
+      const rating = request.body
+
+      let missingProp = []
+
+      for(let requiredParam of ['rating']) {
+         if(!rating[requiredParam]) {
+           missingProp = [...missingProp, requiredParam]
+         }
+       }
+ 
+       if (missingProp.length) {
+         response.status(415).json({error: error.message})
+       }
+
+      database('comedy_clubs').where('id', club_id)
+        .update(rating)
+        .then(rating => {
+            response.status(204).json(rating)
+        })
+        .catch(error => {
+            response.status(415).json({ error: error.message })
+        })
+  })
   
   app.get('/api/v1/comedy_clubs', (request, response) => {
     database('comedy_clubs').select()
