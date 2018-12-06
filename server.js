@@ -55,6 +55,18 @@ app.get('/api/v1/cities', (request, response) => {
   app.patch('/api/v1/cities/:id', (request, response) => {
      const { id } = request.params
      const tourismWeb = request.body
+     
+     let missingProp = []
+
+     for(let requiredParam of ['tourism_website']) {
+        if(!tourismWeb[requiredParam]) {
+          missingProp = [...missingProp, requiredParam]
+        }
+      }
+
+      if (missingProp.length) {
+        response.status(415).json({error: error.message})
+      }
 
      database('cities').where('id', id)
        .update(tourismWeb)
@@ -62,7 +74,7 @@ app.get('/api/v1/cities', (request, response) => {
            response.status(204).json(tourismWeb)
        })
        .catch(error => {
-           response.status(415).json({ error: error.message })
+           response.status(500).json({ error: error.message })
        })
   })
   

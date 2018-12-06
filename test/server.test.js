@@ -82,6 +82,26 @@ describe('Server file', () => {
           done()
         })
     })
+
+    it('should be return a 204 status on successful PATCH request', (done) => {
+      chai.request(app)
+        .patch('/api/v1/cities/2')
+        .send({ tourism_website: 'www.ben.com' })
+        .end((error, response) => {
+          expect(response).to.have.status(204)
+          done()
+        })
+    })
+
+    it('should return 415 status updatable field is not changed', (done) => {
+      chai.request(app)
+        .patch('/api/v1/cities/2')
+        .send({ city: 'Ben' })
+        .end((error, response) => {
+          expect(response).to.have.status(415)
+          done()
+        })
+    })
   })
 
   describe('/api/v1/comedy_clubs', () => {
