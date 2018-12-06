@@ -108,7 +108,7 @@ app.get('/api/v1/cities', (request, response) => {
             response.status(204).json(rating)
         })
         .catch(error => {
-            response.status(415).json({ error: error.message })
+            response.status(500).json({ error: error.message })
         })
   })
   

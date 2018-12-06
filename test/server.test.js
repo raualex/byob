@@ -150,6 +150,47 @@ describe('Server file', () => {
     })
   })
 
+  describe('/api/v1/comedy_clubs/:club_id', () => {
+
+    it('should return status of 200 on successful GET request', (done) => {
+      chai.request(app)
+        .get('/api/v1/comedy_clubs/3')
+        .end((error, response) => {
+          expect(response).to.have.status(200)
+          done()
+        })
+    })
+
+    it('should return one comedy club', (done) => {
+      chai.request(app)
+        .get('/api/v1/comedy_clubs/3')
+        .end((error, response) => {
+          expect(response.body.length).to.equal(1)
+          done()
+        })
+    })
+
+    it('should return status of 204 of PATCH request successful', (done) => {
+      chai.request(app)
+        .patch('/api/v1/comedy_clubs/5')
+        .send({ rating: 4 })
+        .end((error, response) => {
+          expect(response).to.have.status(204)
+          done()
+        })
+    })
+
+    it('should return status of 415 if required param is missing', (done) => {
+      chai.request(app)
+        .patch('/api/v1/comedy_clubs/5')
+        .send({ name: 'Ben' })
+        .end((error, response) => {
+          expect(response).to.have.status(415)
+          done()
+        })
+    })
+  })
+
   describe('/api/v1/cities/:city_id/comedy_clubs/:club_id', () => {
     
     it('should return status of 202 upon successful delete', (done) => {
