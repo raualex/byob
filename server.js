@@ -75,6 +75,16 @@ app.get('/api/v1/cities', (request, response) => {
             response.status(500).json({ error: error.message });
         })
   })
+
+  app.get('/api/v1/comedy_clubs?zip_code', (request, response) => {
+    database('comedy_clubs').where('zip_code', request.query.zip_code).select()
+      .then(zip_code => {
+          response.status(204).json(zip_code)
+      })
+      .catch(error => {
+          response.status(415).json({ error: error.message })
+      })
+  })
   
   app.post('/api/v1/cities/:city_id/comedy_clubs', (request, response) => {
     const club = request.body
@@ -99,6 +109,8 @@ app.get('/api/v1/cities', (request, response) => {
             response.status(500).json({error: error.message})
         })
   })
+
+
 
   app.get('/api/v1/cities/:city_id/comedy_clubs', (request, response) => {
     const { city_id } = request.params
