@@ -56,8 +56,9 @@ app.get('/api/v1/cities', (request, response) => {
      const { id } = request.params
      const tourismWeb = request.body
 
-     database('cities').where('id', id).update({ tourism_website: tourismWeb })
-       .then(() => {
+     database('cities').where('id', id)
+       .update(tourismWeb)
+       .then(tourismWeb => {
            response.status(204).json(tourismWeb)
        })
        .catch(error => {
