@@ -51,6 +51,19 @@ app.get('/api/v1/cities', (request, response) => {
         .then(city => response.status(200).json(city))
         .catch(error => response.status(500).json(`Error fetching city: ${error.message}`))
   })
+
+  app.patch('/api/v1/cities/:id', (request, response) => {
+     const { id } = request.params
+     const tourismWeb = request.body
+
+     database('cities').where('id', id).update({ tourism_website: tourismWeb })
+       .then(() => {
+           response.status(204).json(tourismWeb)
+       })
+       .catch(error => {
+           response.status(415).json({ error: error.message })
+       })
+  })
   
   app.get('/api/v1/comedy_clubs', (request, response) => {
     database('comedy_clubs').select()
