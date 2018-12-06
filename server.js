@@ -90,6 +90,18 @@ app.get('/api/v1/cities', (request, response) => {
       const { club_id } = request.params
       const rating = request.body
 
+      let missingProp = []
+
+      for(let requiredParam of ['rating']) {
+         if(!rating[requiredParam]) {
+           missingProp = [...missingProp, requiredParam]
+         }
+       }
+ 
+       if (missingProp.length) {
+         response.status(415).json({error: error.message})
+       }
+
       database('comedy_clubs').where('id', club_id)
         .update(rating)
         .then(rating => {
