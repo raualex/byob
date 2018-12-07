@@ -10,6 +10,26 @@ app.set('port', process.env.PORT || 3000);
 app.locals.title = 'BYOB';
 app.use(express.static('public'));
   
+  app.get('/api/v1/cities', (request, response) => {
+
+    if(request.query.city) {
+      let nameQuery = request.query.city
+
+      database('cities').where("city", nameQuery).select()
+      .then(city => {
+        response.status(200).json(city)
+      })
+    } else {
+      database('cities').select()
+      .then(cities => {
+        response.status(200).json(cities)
+      })
+      .catch(error => {
+        response.status(500).json({ error: error.message })
+      })
+    }
+  })
+
   app.post('/api/v1/cities', (request, response) => {
     const city = request.body
   
@@ -110,29 +130,6 @@ app.use(express.static('public'));
         .catch(error => {
             response.status(500).json({ error: error.message });
         })
-  })
-
-  app.get('/api/v1/cities', (request, response) => {
-
-    if(request.query.city) {
-      let nameQuery = request.query.city
-
-      database('cities').where("city", nameQuery).select()
-      .then(city => {
-        response.status(200).json(city)
-      })
-      .catch(error => {
-        response.status(500).json({ error: error.message })
-      })
-    } else {
-      database('cities').select()
-      .then(cities => {
-        response.status(200).json(cities)
-      })
-      .catch(error => {
-        response.status(500).json({ error: error.message })
-      })
-    }
   })
   
   app.post('/api/v1/cities/:city_id/comedy_clubs', (request, response) => {

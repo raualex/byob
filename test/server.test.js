@@ -32,7 +32,29 @@ describe('Server file', () => {
       chai.request(app)
         .get('/api/v1/cities')
         .end((error, response) => {
-          expect(response.body.length).to.equal(3)
+          expect(response.body[0].city).to.equal('Denver')
+          expect(response.body[1].city).to.equal('New York City')
+          expect(response.body[2].city).to.equal('Austin')
+          done()
+        })
+    })
+
+    it('should return requested city based off of search query', (done) => {
+
+      chai.request(app)
+        .get('/api/v1/cities?city=Austin')
+        .end((error, response) => {
+          expect(response.body[0].city).to.equal('Austin')
+          done()
+        })
+    })
+
+    it('should return empty array if the search query is not included in the database', (done) => {
+
+      chai.request(app)
+        .get('/api/v1/cities?city=Williamsport')
+        .end((error, response) => {
+          expect(response.body).to.deep.equal([])
           done()
         })
     })
@@ -119,7 +141,11 @@ describe('Server file', () => {
       chai.request(app)
         .get('/api/v1/comedy_clubs')
         .end((error, response) => {
-          expect(response.body.length).to.equal(5)
+          expect(response.body[0].name).to.equal('Denver Comedy')
+          expect(response.body[1].name).to.equal('Other Denver Comedy')
+          expect(response.body[2].name).to.equal('NYC Comedy')
+          expect(response.body[3].name).to.equal('Austin Comedy')
+          expect(response.body[4].name).to.equal('Texas Comedy')
           done()
         })
     })
@@ -165,7 +191,7 @@ describe('Server file', () => {
       chai.request(app)
         .get('/api/v1/comedy_clubs/3')
         .end((error, response) => {
-          expect(response.body.length).to.equal(1)
+          expect(response.body[0].name).to.equal('NYC Comedy')
           done()
         })
     })
