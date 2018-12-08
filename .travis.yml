@@ -11,5 +11,5 @@ deploy:
   provider: heroku
   api_key:
     secure: R4WqXH+Vr5EotMjEFFKsAbpvBx+b9U92DT116EidnfaspugMLDir+QN+tEtreVT/8VWLdTybuXlg5mWqzjoisJDhS07Gcb1ebV202csuwtFWIL+aQRU1qmbpJ3Pdhl+fRe6pAwm+GdZeYgedN7WP5WGW5pwobzEOYVMwXWBqJXo6O0JzaWXMf7XAsj9/aqnKW9dGXcLOlbGnvtBDWcjYlzCkv6ICdnRr43HYxjK+JPJGgm98SOvI+SpDV2dE3hFETrIxgsy8O8YlTpzje3hQmG7ZPDnw5HKg0naE48FbdaM6VKmCcGrr5Hrzv8Le0UZK+CWwMJcD+OWqScihlIvVbHf6IZKYFdWu8/9Baox2q0WKUn952/TnOAqdJjoSBSoI29vXCbNJ0E2jW3rBv5xDGF/4cfapt6uN2uiqTk38XCWfJ0Ma+Q+VE/zBqoOyIoqa5wv+/631rw0r9yOU8OrlszUPoU338vb5Ok49jwbSTfj+5Tpp7Tf4IM4+lBnzstgq2YX97jl4uVpq/2VreMGrNugO95fiKnP+kygzsRirDmeVvnT5ZZNXQJDPJ9aa7ThQUzFxoyCp+bsx1Oz9boEvIYvXFC8D0FZBJGSCY8HiGHi2/7Sb0PWr+jTVfZ61PIQI0t2C716eModd6lqjvlV6hIO3WWgAbPpGNdtXb1MddtQ=
-  app: comedy-club-api-bh-ar
+  app: comedy-club-api-byob
   skip_cleanup: true
