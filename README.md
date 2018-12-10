@@ -55,6 +55,23 @@ DELETE /api/v1/cities/:city_id/comedy_clubs/:club_id  // delete a specific comed
 
 ```
 
+# To Contribute to the Project:
+
+- Follow the instructions in the README to get the app up and running locally on your machine.
+
+- Our list of Issues on GitHub Issues: (https://github.com/raualex/byob/issues)
+  Please use these issues to direct the contributions you desire to make.
+
+- To send a Pull Request via GitHub:
+    - Checkout a new branch
+    - Add a forked version of this repo as your remote
+    - Push up changes to your forked repo
+    - Request the Pull Request to the original repo
+    - Include a brief commit message details the changes you have made
+    - Make sure to write tests for the front end
+    - Make sure all tests are passing before you make a Pull Request
+    - Before submitting, Rebase your work on the current master branch
+
 ## Technologies Used
 - Node.js
 - Express
