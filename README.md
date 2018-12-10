@@ -18,6 +18,9 @@
 
 * `knex seed:run`
 
+#### Testing 
+* `To test run npm test`
+
 ### API Endpoints
 #### Cities
 ```
@@ -57,6 +60,9 @@ DELETE /api/v1/cities/:city_id/comedy_clubs/:club_id  // delete a specific comed
 - Express
 - Knex.js
 - Heroku
+- Mocha
+- Chai 
+- Chai-http
 
 ## Project Requirements
 Project spec [link](http://frontend.turing.io/projects/build-your-own-backend.html).
