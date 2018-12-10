@@ -57,7 +57,7 @@ DELETE /api/v1/cities/:city_id/comedy_clubs/:club_id  // delete a specific comed
 
 # To Contribute to the Project:
 
-- Follow the instructions in the README to get the app up and running locally on your machine.
+- Follow the setup instructions above to get the app up and running locally on your machine.
 
 - Our list of Issues on GitHub Issues: (https://github.com/raualex/byob/issues)
   Please use these issues to direct the contributions you desire to make.
