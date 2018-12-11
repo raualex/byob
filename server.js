@@ -1,11 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const environment = process.env.NODE_ENV || "development";
 const config = require("./knexfile")[environment];
 const database = require("knex")(config);
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json(), cors());
 app.set("port", process.env.PORT || 3000);
 app.locals.title = "BYOB";
 app.use(express.static("public"));
