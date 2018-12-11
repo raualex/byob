@@ -120,33 +120,44 @@ app.get("/api/v1/comedy_clubs/:club_id", (request, response) => {
     );
 });
 
-app.patch("/api/v1/comedy_clubs/:club_id", (request, response) => {
-  const { club_id } = request.params;
-  const rating = request.body;
+app.patch(
+  "/api/v1/comedy_clubs/:club_id",
+  (request, response, next) => {
+    const rating = request.body;
 
-  let missingProp = [];
+    let missingProp = [];
 
-  for (let requiredParam of ["rating"]) {
-    if (!rating[requiredParam]) {
-      missingProp = [...missingProp, requiredParam];
+    for (let requiredParam of ["rating"]) {
+      if (!rating[requiredParam]) {
+        missingProp = [...missingProp, requiredParam];
+      }
     }
-  }
 
-  if (missingProp.length) {
-    response.status(415).json({ error: error.message });
-  }
+    if (missingProp.length) next("route");
+    else next();
+  },
+  function(request, response, next) {
+    const { club_id } = request.params;
+    const rating = request.body;
 
-  database("comedy_clubs")
-    .where("id", club_id)
-    .update(rating)
-    .then(row => {
-      response
-        .status(201)
-        .json(`Club ${club_id}'s rating has been updated to ${rating.rating}`);
-    })
-    .catch(error => {
-      response.status(500).json({ error: error.message });
-    });
+    database("comedy_clubs")
+      .where("id", club_id)
+      .update(rating)
+      .then(row => {
+        response
+          .status(201)
+          .json(
+            `Club ${club_id}'s rating has been updated to ${rating.rating}`
+          );
+      })
+      .catch(error => {
+        response.status(500).json({ error: error.message });
+      });
+  }
+);
+
+app.patch("/api/v1/comedy_clubs/:club_id", (request, response, next) => {
+  response.status(415).json({ error: error.message });
 });
 
 app.get("/api/v1/comedy_clubs", (request, response) => {
