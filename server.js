@@ -139,8 +139,10 @@ app.patch("/api/v1/comedy_clubs/:club_id", (request, response) => {
   database("comedy_clubs")
     .where("id", club_id)
     .update(rating)
-    .then(rating => {
-      response.status(204).json(rating);
+    .then(row => {
+      response
+        .status(201)
+        .json(`Club ${club_id}'s rating has been updated to ${rating.rating}`);
     })
     .catch(error => {
       response.status(500).json({ error: error.message });

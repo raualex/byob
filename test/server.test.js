@@ -235,12 +235,14 @@ describe("Server file", () => {
     });
 
     it("should return status of 204 of PATCH request successful", done => {
+      const expected = `Club 5's rating has been updated to 4`;
       chai
         .request(app)
         .patch("/api/v1/comedy_clubs/5")
         .send({ rating: 4 })
         .end((error, response) => {
-          expect(response).to.have.status(204);
+          expect(response).to.have.status(201);
+          expect(response.body).to.equal(expected);
           done();
         });
     });
