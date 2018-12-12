@@ -2,19 +2,26 @@ const Nightmare = require("nightmare");
 const nightmare = Nightmare({ show: true });
 const fs = require("fs");
 
+var cleaner = require("./dataCleaner.js").parkCleaner;
+
 nightmare
   .viewport(1025, 1500)
   .goto("https://www.ultimaterollercoaster.com/coasters/parks/states")
   .evaluate(() => {
-    let state = document.querySelectorAll("h3.new");
-    state = [].slice.call(state);
+    let parks = document.querySelectorAll(".tpList li a");
+    let cities = document.querySelectorAll(".tpList li i");
 
-    state = state.map(location => location.innerText);
+    parks = [].slice.call(parks);
+    cities = [].slice.call(cities);
 
-    return state;
+    parks = parks.map(park => park.innerText);
+    cities = cities.map(city => city.innerText);
+
+    return [parks, cities];
   })
   .end()
   .then(result => {
-    console.log(JSON.stringify(result, null, 4));
+    let cleaned = cleaner(result);
+    console.log(JSON.stringify(cleaned, null, 4));
   })
   .catch(error => console.error("Here is your error", error));
