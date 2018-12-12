@@ -22,6 +22,10 @@ nightmare
   .end()
   .then(result => {
     let cleaned = cleaner(result);
+    fs.writeFileSync("./data/parkData.js", JSON.stringify(cleaned), err => {
+      if (err) throw err;
+      console.log("file saved");
+    });
     console.log(JSON.stringify(cleaned, null, 4));
   })
   .catch(error => console.error("Here is your error", error));
