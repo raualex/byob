@@ -1,6 +1,7 @@
 const Nightmare = require("nightmare");
 const nightmare = Nightmare({ show: true });
 const fs = require("fs");
+const cities = require("../data/citiesdata");
 
 var cleaner = require("./dataCleaner.js").parkCleaner;
 
@@ -22,7 +23,15 @@ nightmare
   .end()
   .then(result => {
     let cleaned = cleaner(result);
-    fs.writeFileSync("./data/parkData.js", JSON.stringify(cleaned), err => {
+    cleaned = cities.map(city => {
+      let name = city.city;
+      let park = "None";
+      if (cleaned[name]) park = cleaned[name].parks;
+
+      city = { ...city, theme_parks: park };
+      return city;
+    });
+    fs.writeFileSync("./data/citiesdata.js", JSON.stringify(cleaned), err => {
       if (err) throw err;
       console.log("file saved");
     });
