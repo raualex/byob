@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.set("port", process.env.PORT || 3000);
 app.locals.title = "BYOB";
-app.use(express.static("./dev-docs/build"));
+app.use(express.static("/dev-docs/build"));
 
 app.get("/api/v1/cities", (request, response) => {
   if (request.query.city) {
