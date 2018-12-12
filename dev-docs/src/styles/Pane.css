@@ -1,0 +1,64 @@
+.pane {
+  max-width: 1000px;
+  margin: 1rem auto;
+  background: #e7f0f7;
+  font-size: 0.8rem;
+  border: 1px solid #;
+  position: relative;
+}
+
+.pane:hover {
+  cursor: pointer;
+}
+.main-pane {
+  display: flex;
+}
+
+.type {
+  width: 50px;
+  font-weight: 800;
+  padding: 0 1rem;
+  background: #0f6ab4;
+  text-align: center;
+  margin: 0;
+}
+
+.url {
+  margin: 0 0 0 1rem;
+}
+
+.returns {
+  margin: 0 0 0 auto;
+  font-style: italic;
+  padding-right: 1rem;
+}
+
+.type,
+.url,
+.returns {
+  line-height: 50px;
+}
+
+.secondary-label {
+  font-weight: 700;
+}
+
+.secondary-pane {
+  transition: 0.5s;
+  overflow: hidden;
+  height: 0px;
+  display: grid;
+  padding-left: 1rem;
+}
+
+.secondary-pane.true {
+  height: 270px;
+}
+
+.secondary-pane button {
+  width: 200px;
+  margin: 0.5rem auto;
+  background: #0f6ab4;
+  font-weight: 700;
+  border: none;
+}
