@@ -129,7 +129,7 @@ describe("Server file", () => {
         .patch("/api/v1/cities/2")
         .send({ tourism_website: "www.ben.com" })
         .end((error, response) => {
-          expect(response).to.have.status(201);
+          expect(response).to.have.status(204);
           expect(response.body).to.equal(expected);
           done();
         });
@@ -241,7 +241,7 @@ describe("Server file", () => {
         .patch("/api/v1/comedy_clubs/5")
         .send({ rating: 4 })
         .end((error, response) => {
-          expect(response).to.have.status(201);
+          expect(response).to.have.status(204);
           expect(response.body).to.equal(expected);
           done();
         });
