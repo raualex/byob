@@ -1,0 +1,30 @@
+.example-modal {
+  position: absolute;
+  left: -4000px;
+  transition: 0.3s;
+  background: #fff;
+  text-align: center;
+  z-index: 1000;
+  max-width: 500px;
+  padding-bottom: 1rem;
+  top: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  height: auto;
+}
+
+.example-modal.true {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.example-modal button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-weight: 700;
+  background: #0f6ab4;
+  border: none;
+  padding: 0.3rem;
+}
