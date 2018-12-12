@@ -63,7 +63,7 @@ app.patch("/api/v1/cities/:id", (request, response, next) => {
     .update({ tourism_website })
     .then(row => {
       response
-        .status(201)
+        .status(204)
         .json(
           `City ${id}'s website has been updated to ${
             tourism_website.tourism_website
@@ -146,7 +146,7 @@ app.get("/api/v1/comedy_clubs/:club_id", (request, response) => {
   database("comedy_clubs")
     .where("id", club_id)
     .select()
-    .then(club => response.status(200).json(club))
+    .then(club => response.status(204).json(club))
     .catch(error =>
       response.status(500).json(`Error fetching city: ${error.message}`)
     );
