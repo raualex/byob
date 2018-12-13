@@ -9,7 +9,8 @@ const createCities = (knex, city) => {
         state: city.state,
         primary_airport: city.primary_airport,
         population: city.population,
-        tourism_website: city.tourism_website
+        tourism_website: city.tourism_website,
+        theme_parks: city.theme_parks
       },
       "id"
     )
@@ -33,6 +34,7 @@ const newClubs = (knex, club) => {
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
+  console.log(cities);
   return knex("comedy_clubs")
     .del()
     .then(() => knex("cities").del())

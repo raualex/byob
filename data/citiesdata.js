@@ -240,3 +240,5 @@ const cities = [
     theme_parks: "None"
   }
 ];
+
+module.exports = cities;
