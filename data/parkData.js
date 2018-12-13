@@ -1,4 +1,4 @@
-const cities = [
+const data = [
   {
     city: "Denver",
     state: "CO",
@@ -240,5 +240,3 @@ const cities = [
     theme_parks: "None"
   }
 ];
-
-module.exports = cities;
