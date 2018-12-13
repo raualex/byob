@@ -4,8 +4,11 @@
   "description": "",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "countrystatesjs": "0.0.12",
     "express": "^4.16.4",
     "knex": "^0.15.2",
+    "nightmare": "^3.0.1",
     "pg": "^7.7.1"
   },
   "devDependencies": {
@@ -15,7 +18,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha --exit",
+    "test": "NODE_ENV=test mocha --exit && cat pikachu.txt",
     "start": "node server.js"
   },
   "repository": {

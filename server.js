@@ -1,11 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const environment = process.env.NODE_ENV || "development";
 const config = require("./knexfile")[environment];
 const database = require("knex")(config);
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json(), cors());
 app.set("port", process.env.PORT || 3000);
 app.locals.title = "BYOB";
 app.use(express.static("./dev-docs/build"));
@@ -30,6 +31,47 @@ app.get("/api/v1/cities", (request, response) => {
         response.status(500).json({ error: error.message });
       });
   }
+});
+
+app.patch(
+  "/api/v1/cities/:id",
+  (request, response, next) => {
+    const tourism_website = request.body;
+
+    let missingProp = [];
+
+    for (let requiredParam of ["tourism_website"]) {
+      if (!tourism_website[requiredParam]) {
+        missingProp = [...missingProp, requiredParam];
+      }
+    }
+
+    if (!missingProp.length) next("route");
+    else next();
+  },
+  function(request, response, next) {
+    response.status(415).json({ error: error.message });
+  }
+);
+
+app.patch("/api/v1/cities/:id", (request, response, next) => {
+  const { id } = request.params;
+  const tourism_website = request.body;
+  database("cities")
+    .where("id", id)
+    .update({ tourism_website })
+    .then(row => {
+      response
+        .status(201)
+        .json(
+          `City ${id}'s website has been updated to ${
+            tourism_website.tourism_website
+          }`
+        );
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message });
+    });
 });
 
 app.post("/api/v1/cities", (request, response) => {
@@ -75,32 +117,26 @@ app.get("/api/v1/cities/:id", (request, response) => {
     );
 });
 
-app.patch("/api/v1/cities/:id", (request, response) => {
-  const { id } = request.params;
-  const tourismWeb = request.body;
+app.patch(
+  "/api/v1/comedy_clubs/:club_id",
+  (request, response, next) => {
+    const rating = request.body;
 
-  let missingProp = [];
+    let missingProp = [];
 
-  for (let requiredParam of ["tourism_website"]) {
-    if (!tourismWeb[requiredParam]) {
-      missingProp = [...missingProp, requiredParam];
+    for (let requiredParam of ["rating"]) {
+      if (!rating[requiredParam]) {
+        missingProp = [...missingProp, requiredParam];
+      }
     }
-  }
 
-  if (missingProp.length) {
+    if (!missingProp.length) next("route");
+    else next();
+  },
+  function(request, response, next) {
     response.status(415).json({ error: error.message });
   }
-
-  database("cities")
-    .where("id", id)
-    .update(tourismWeb)
-    .then(tourismWeb => {
-      response.status(204).json(tourismWeb);
-    })
-    .catch(error => {
-      response.status(500).json({ error: error.message });
-    });
-});
+);
 
 app.get("/api/v1/comedy_clubs/:club_id", (request, response) => {
   const { club_id } = request.params;
@@ -114,27 +150,16 @@ app.get("/api/v1/comedy_clubs/:club_id", (request, response) => {
     );
 });
 
-app.patch("/api/v1/comedy_clubs/:club_id", (request, response) => {
+app.patch("/api/v1/comedy_clubs/:club_id", (request, response, next) => {
   const { club_id } = request.params;
   const rating = request.body;
-
-  let missingProp = [];
-
-  for (let requiredParam of ["rating"]) {
-    if (!rating[requiredParam]) {
-      missingProp = [...missingProp, requiredParam];
-    }
-  }
-
-  if (missingProp.length) {
-    response.status(415).json({ error: error.message });
-  }
-
   database("comedy_clubs")
     .where("id", club_id)
     .update(rating)
-    .then(rating => {
-      response.status(204).json(rating);
+    .then(row => {
+      response
+        .status(201)
+        .json(`Club ${club_id}'s rating has been updated to ${rating.rating}`);
     })
     .catch(error => {
       response.status(500).json({ error: error.message });
