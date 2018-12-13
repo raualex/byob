@@ -62,3 +62,23 @@
   font-weight: 700;
   border: none;
 }
+
+.main-info.mq {
+  display: none;
+  text-align: center;
+  line-height: 2;
+  margin: 1rem;
+}
+
+@media (max-width: 860px) {
+  .main-info.no-mq {
+    display: none;
+  }
+  .main-info.mq {
+    display: block;
+  }
+  .main-info.url {
+    position: absolute;
+    right: 16px;
+  }
+}

@@ -55,8 +55,10 @@ class Pane extends Component {
         <section className="main-pane">
           <p className="type main-info">{type}</p>
           <p className="url main-info">{url}</p>
-          <p className="returns main-info">{returns}</p>
+          <p className="returns main-info no-mq">{returns}</p>
         </section>
+        <p className="returns main-info mq">{returns}</p>
+
         <section className={`secondary-pane ${this.state.deployed}`}>
           <p className="query-params secondary-info">
             <span className="secondary-label">Query parameters:</span> {params}
