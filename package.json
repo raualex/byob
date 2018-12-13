@@ -18,7 +18,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha --exit",
+    "test": "NODE_ENV=test mocha --exit && cat pikachu.txt",
     "start": "node server.js"
   },
   "repository": {

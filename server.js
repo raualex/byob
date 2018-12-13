@@ -57,13 +57,12 @@ app.patch(
 app.patch("/api/v1/cities/:id", (request, response, next) => {
   const { id } = request.params;
   const tourism_website = request.body;
-
   database("cities")
     .where("id", id)
     .update({ tourism_website })
     .then(row => {
       response
-        .status(204)
+        .status(201)
         .json(
           `City ${id}'s website has been updated to ${
             tourism_website.tourism_website
@@ -118,7 +117,6 @@ app.get("/api/v1/cities/:id", (request, response) => {
     );
 });
 
-
 app.patch(
   "/api/v1/comedy_clubs/:club_id",
   (request, response, next) => {
@@ -138,20 +136,20 @@ app.patch(
   function(request, response, next) {
     response.status(415).json({ error: error.message });
   }
-);  
-  
+);
+
 app.get("/api/v1/comedy_clubs/:club_id", (request, response) => {
   const { club_id } = request.params;
 
   database("comedy_clubs")
     .where("id", club_id)
     .select()
-    .then(club => response.status(204).json(club))
+    .then(club => response.status(200).json(club))
     .catch(error =>
       response.status(500).json(`Error fetching city: ${error.message}`)
     );
 });
-  
+
 app.patch("/api/v1/comedy_clubs/:club_id", (request, response, next) => {
   const { club_id } = request.params;
   const rating = request.body;
@@ -160,7 +158,7 @@ app.patch("/api/v1/comedy_clubs/:club_id", (request, response, next) => {
     .update(rating)
     .then(row => {
       response
-        .status(204)
+        .status(201)
         .json(`Club ${club_id}'s rating has been updated to ${rating.rating}`);
     })
     .catch(error => {
